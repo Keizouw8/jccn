@@ -1,0 +1,24 @@
+@font-face {
+    font-family: jbm;
+    src: url(../assets/jbm.ttf);
+}
+
+body{
+    background: rgb(30, 30, 30);
+    padding: 50px;
+}
+
+*{
+    color: white;
+    font-family: jbm;
+}
+
+h1{
+    font-size: 3em;
+}
+
+asterisk{
+    display: inline-block;
+    font-size: small;
+    font-style: italic;
+}
