@@ -4,7 +4,7 @@
 }
 
 body{
-    background: rgb(30, 30, 30);
+    background: rgb(20, 20, 20);
     padding: 50px;
 }
 
@@ -14,11 +14,11 @@ body{
 }
 
 h1{
-    font-size: 3em;
+    font-size: 48px;
 }
 
 asterisk{
     display: inline-block;
-    font-size: small;
+    font-size: 12px;
     font-style: italic;
 }

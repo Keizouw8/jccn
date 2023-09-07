@@ -1,0 +1,17 @@
+.container {
+    position: absolute;
+    width: 228px;
+    top: 50px;
+    left: 50px;
+}
+
+img {
+    position: absolute;
+    width: calc(100vw - 75px - 227px);
+    right: 50px;
+    top: 50px;
+}
+
+h2 {
+    cursor: pointer;
+}
