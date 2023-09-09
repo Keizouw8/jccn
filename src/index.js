@@ -1,10 +1,23 @@
 const { app, BrowserWindow, ipcMain, shell } = require("electron"); 
+const express = require("express");
+const io = require("socket.io");
+const http = require("http");
 const path = require("path");
 const os = require("os");
 
 var userDataPath = app.getPath('userData');
 var interfaceCard = os.networkInterfaces();
-console.log(interfaceCard);
+
+var server = {};
+(async function(){
+	const getPort = await import("get-port");
+	server.app = express();
+	server.http = http.createServer(server.app);
+	server.io = io(server.http);
+	server.port = await getPort.default();
+	server.http.listen(server.port);
+	console.log(server.port);
+})();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {

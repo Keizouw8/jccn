@@ -5,6 +5,10 @@
     left: 50px;
 }
 
+h1{
+    margin: 0;
+}
+
 img {
     position: absolute;
     height: calc(100vh - 100px);
@@ -34,17 +38,44 @@ h2[active="true"] {
     color: black;
 }
 
-span{
+span.contact{
     position: absolute;
     bottom: 50px;
     left: 50px;
     padding: 0;
     margin: 0;
     font-size: 32px;
+    cursor: default;
 }
 
-i{
+span.contact > i{
     cursor: pointer;
     padding: 0;
     margin: 0;
+}
+
+p.connected{
+    margin-left: 2px;
+    padding: 0;
+}
+
+p.connected > i{
+    font-size: 10px;
+    transform: translateY(-18%);
+}
+
+p.connected[active="false"] > i{
+    color: rgb(255, 100, 100)
+}
+
+p.connected[active="true"] > i{
+    color: rgb(100, 255, 100)
+}
+
+p.connected[active="false"] > span{
+    color: rgb(225, 225, 225)
+}
+
+p.connected[active="true"]{
+    color: white
 }
