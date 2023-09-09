@@ -15,12 +15,12 @@
   "author": "keizouw",
   "license": "MIT",
   "dependencies": {
-    "@electron-forge/maker-dmg": "^6.4.2",
     "electron-squirrel-startup": "^1.0.0",
     "shell": "^0.5.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.1",
+    "@electron-forge/maker-dmg": "^6.4.2",
     "@electron-forge/maker-deb": "^6.4.1",
     "@electron-forge/maker-rpm": "^6.4.1",
     "@electron-forge/maker-squirrel": "^6.4.1",
