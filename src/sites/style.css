@@ -7,8 +7,17 @@ body{
     background: rgb(20, 20, 20);
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 *{
     color: white;
     font-family: jbm;
     transition: 0.5s;
+}
+
+h1{
+    font-size: 48px;
+    margin-top: 0;
 }

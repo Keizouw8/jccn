@@ -15,10 +15,6 @@ img {
     transition: 0s;
 }
 
-h1{
-    font-size: 48px;
-}
-
 h2 {
     cursor: pointer;
     width: calc(100% - 20px);
@@ -36,10 +32,6 @@ h2[active="false"] {
 h2[active="true"] {
     background: white;
     color: black;
-}
-
-body::-webkit-scrollbar {
-    display: none;
 }
 
 span{

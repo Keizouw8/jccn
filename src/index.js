@@ -1,5 +1,10 @@
 const { app, BrowserWindow, ipcMain, shell } = require("electron"); 
 const path = require("path");
+const os = require("os");
+
+var userDataPath = app.getPath('userData');
+var interfaceCard = os.networkInterfaces();
+console.log(interfaceCard);
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
