@@ -5,20 +5,10 @@
 
 body{
     background: rgb(20, 20, 20);
-    padding: 50px;
 }
 
 *{
     color: white;
     font-family: jbm;
-}
-
-h1{
-    font-size: 48px;
-}
-
-asterisk{
-    display: inline-block;
-    font-size: 12px;
-    font-style: italic;
+    transition: 0.5s;
 }

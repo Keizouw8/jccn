@@ -15,7 +15,8 @@
   "author": "keizouw",
   "license": "MIT",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "shell": "^0.5.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.1",

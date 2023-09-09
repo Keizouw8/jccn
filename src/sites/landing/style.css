@@ -1,17 +1,58 @@
 .container {
     position: absolute;
-    width: 228px;
+    width: max(375px, calc(100vw - 100vh - 25px));
     top: 50px;
     left: 50px;
 }
 
 img {
     position: absolute;
-    width: calc(100vw - 75px - 227px);
+    height: calc(100vh - 100px);
+    width: min(calc(100vh - 100px), calc(100vw - 500px));
     right: 50px;
     top: 50px;
+    object-fit: cover;
+    transition: 0s;
+}
+
+h1{
+    font-size: 48px;
 }
 
 h2 {
     cursor: pointer;
+    width: calc(100% - 20px);
+    background: none;
+    margin: 0;
+    padding: 10px;
+    border-radius: 0.2em;
+}
+
+h2[active="false"] {
+    background: none;
+    color: white;
+}
+
+h2[active="true"] {
+    background: white;
+    color: black;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+span{
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    padding: 0;
+    margin: 0;
+    font-size: 32px;
+}
+
+i{
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
 }
