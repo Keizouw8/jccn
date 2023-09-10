@@ -24,6 +24,7 @@ document.addEventListener("keydown", function(e){
 		for(var i = 0; i < h2s.length; i++){
 			if(h2s[i].getAttribute("active") == "true"){
 				h2s[i].setAttribute("active", "false");
+				if(i == 1 && !active()) i = 2;
 				img.src = `../../assets/icon${(i+1) % h2s.length}.jpg`;
 				return h2s[(i+1) % h2s.length].setAttribute("active", "true");
 			}
@@ -35,6 +36,7 @@ document.addEventListener("keydown", function(e){
 			if(h2s[i].getAttribute("active") == "true"){
 				h2s[i].setAttribute("active", "false");
 				if(--i < 0) i = h2s.length - 1;
+				if(i == 2 && !active()) i = 1;
 				img.src = `../../assets/icon${i}.jpg`;
 				return h2s[i].setAttribute("active", "true");
 			}
@@ -46,8 +48,10 @@ document.addEventListener("keydown", function(e){
 	}
 });
 
-document.querySelectorAll("i").forEach(function(e){
+document.querySelectorAll("span.contact > i").forEach(function(e){
 	e.addEventListener("click", function(){
 		window.electronAPI.openLink(e.getAttribute("goto"));
 	});
 });
+
+var active = () => document.querySelector("p.connected").getAttribute("active") == "true";

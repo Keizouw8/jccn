@@ -1,8 +1,13 @@
-.container {
+body, html{
+    border-radius: 50px;
+}
+
+div.container {
     position: absolute;
-    width: max(375px, calc(100vw - 100vh - 25px));
-    top: 50px;
+    width: min(calc(100% - 100px), max(375px, calc(100vw - 100vh - 25px)));
+    top: 70px;
     left: 50px;
+    transition: 0.5s, width 0s;
 }
 
 h1{
@@ -11,12 +16,13 @@ h1{
 
 img {
     position: absolute;
-    height: calc(100vh - 100px);
-    width: min(calc(100vh - 100px), calc(100vw - 500px));
+    height: calc(100vh - 120px);
+    width: min(calc(100vh - 120px), calc(100vw - 500px));
     right: 50px;
-    top: 50px;
+    top: 70px;
     object-fit: cover;
     transition: 0s;
+    border-radius: 5px;
 }
 
 h2 {
@@ -78,4 +84,8 @@ p.connected[active="false"] > span{
 
 p.connected[active="true"]{
     color: white
+}
+
+p.connected[active="false"] ~ h2.multiplayer{
+    display: none;
 }

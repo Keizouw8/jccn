@@ -1,4 +1,4 @@
-document.querySelector("i").addEventListener("click", function(){
+document.querySelector("i#back").addEventListener("click", function(){
 	location = "../landing/index.html";
 });
 

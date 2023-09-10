@@ -20,3 +20,30 @@ body::-webkit-scrollbar {
 h1{
     font-size: 48px;
 }
+
+titlebar{
+    transition: 0s;
+    background-color: rgb(40, 40, 40);
+    height: 30px;
+    position: fixed;
+    z-index: 9999999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+titlebar > i{
+    margin: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-app-region: no-drag;
+}
