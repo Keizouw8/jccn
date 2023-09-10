@@ -65,18 +65,19 @@ p.connected{
     padding: 0;
 }
 
-p.connected > i{
+p.connected > i.fa-circle{
     font-size: 10px;
     transform: translateY(-18%);
 }
 
-p.connected[active="false"] > i{
+p.connected[active="false"] > i.fa-circle{
     color: rgb(255, 100, 100)
 }
 
-p.connected[active="true"] > i{
+p.connected[active="true"] > i.fa-circle{
     color: rgb(100, 255, 100)
 }
+
 
 p.connected[active="false"] > span{
     color: rgb(225, 225, 225)
@@ -84,6 +85,21 @@ p.connected[active="false"] > span{
 
 p.connected[active="true"]{
     color: white
+}
+
+p.connected[active="false"] > i.fa-clipboard{
+    pointer-events: none;
+    opacity: 0;
+}
+
+p.connected[active="true"] > i.fa-clipboard{
+    pointer-events: all;
+    cursor: pointer;
+    opacity: 0;
+}
+
+p.connected[active="true"] > i.fa-clipboard:hover{
+    opacity: 1;
 }
 
 p.connected[active="false"] ~ h2.multiplayer{

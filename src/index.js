@@ -1,12 +1,12 @@
-const { app, BrowserWindow, ipcMain, shell } = require("electron"); 
+const { app, BrowserWindow, ipcMain, shell, clipboard } = require("electron"); 
 const express = require("express");
 const io = require("socket.io");
 const http = require("http");
 const path = require("path");
 const os = require("os");
 
-var userDataPath = app.getPath('userData');
-var interfaceCard = os.networkInterfaces();
+var userDataPath = app.getPath("userData");
+var thunderbolt = false;
 
 var server = {};
 (async function(){
@@ -16,7 +16,6 @@ var server = {};
 	server.io = io(server.http);
 	server.port = await getPort.default();
 	server.http.listen(server.port);
-	console.log(server.port);
 })();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -39,6 +38,32 @@ const createWindow = () => {
 
 	mainWindow.setMenuBarVisibility(false);
 	mainWindow.loadFile(path.join(__dirname, "sites/landing/index.html"));
+
+	ipcMain.on("getAddress", function(){
+		mainWindow.webContents.send("address", thunderbolt, server.port);
+	});
+
+	function checkThunderbolt(){
+		var address = false;
+		var interfaceCard = os.networkInterfaces();
+		var keys = Object.keys(interfaceCard);
+		for(var i = 0; i < keys.length; i++){
+			if(keys[i].includes("bridge")){
+				for(var o = 0; o < interfaceCard[keys[i]].length; o++){
+					if(interfaceCard[keys[i]][o]["family"] == "IPv4"){
+						address = interfaceCard[keys[i]][o]["address"];
+					}
+				}
+			}
+		}
+	
+		if(address != thunderbolt){
+			thunderbolt = address;
+			mainWindow.webContents.send("address", address, server.port);
+		}
+	};
+	
+	setTimeout(() => setInterval(checkThunderbolt, 100), 1000);
 };
 
 app.on("ready", createWindow);
@@ -69,6 +94,10 @@ ipcMain.on("minimize", function(e){
 	window.minimize();
 });
 
-ipcMain.on("openLink", (e, url) => {
+ipcMain.on("clipboard", function(_, ...args){
+	clipboard.writeText(...args);
+});
+
+ipcMain.on("openLink", (_, url) => {
 	shell.openExternal(url);
 });

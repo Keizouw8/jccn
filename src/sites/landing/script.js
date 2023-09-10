@@ -54,4 +54,15 @@ document.querySelectorAll("span.contact > i").forEach(function(e){
 	});
 });
 
+document.querySelector("p.connected > i.fa-clipboard").addEventListener("click", function(){
+	window.electronAPI.clipboard(document.querySelector("p.connected > span").innerText);
+});
+
+window.electronAPI.onChangeAddress(function(address, port){
+	document.querySelector(".connected").setAttribute("active", Boolean(address).toString());
+	document.querySelector(".connected > span").innerText = address ? `${address}:${port}` : "thunderbolt offline";
+	if(!address) document.querySelector("h2.multiplayer").setAttribute("active", "false");
+});
+window.electronAPI.getAddress();
+
 var active = () => document.querySelector("p.connected").getAttribute("active") == "true";
