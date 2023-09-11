@@ -1,11 +1,14 @@
-const { app, BrowserWindow, ipcMain, shell, clipboard } = require("electron"); 
+const { app, BrowserWindow, ipcMain, shell, clipboard, protocol } = require("electron"); 
 const express = require("express");
 const io = require("socket.io");
 const http = require("http");
 const path = require("path");
+const ejs = require("ejs");
 const os = require("os");
+const fs = require("fs");
 
 var userDataPath = app.getPath("userData");
+var srcPath = path.join(__dirname, "sites");
 var thunderbolt = false;
 
 var server = {};
@@ -24,20 +27,23 @@ if (require("electron-squirrel-startup")) {
 }
 
 const createWindow = () => {
-	const mainWindow = new BrowserWindow({
+	var options = {
 		width: 1000,
 		height: 600,
 		minWidth: 380,
 		minHeight: 570,
 		webPreferences: {
-			preload: path.join(__dirname, "sites/preload.js"),
+			preload: path.join(__dirname, "preload.js"),
+			additionalArguments: [__dirname]
 		},
 		icon: path.join(__dirname, "assets/icons/icon.ico"),
 		frame: false
-	});
+	};
+
+	const mainWindow = new BrowserWindow(options);
 
 	mainWindow.setMenuBarVisibility(false);
-	mainWindow.loadFile(path.join(__dirname, "sites/landing/index.html"));
+	mainWindow.loadFile(path.join(srcPath, "landing/index.html"));
 
 	ipcMain.on("getAddress", function(){
 		mainWindow.webContents.send("address", thunderbolt, server.port);
@@ -63,7 +69,14 @@ const createWindow = () => {
 		}
 	};
 	
-	setTimeout(() => setInterval(checkThunderbolt, 100), 1000);
+	var interval;
+	setTimeout(() => interval = setInterval(checkThunderbolt, 100), 1000);
+
+	ipcMain.on("reset", function(){
+		clearInterval(interval);
+		mainWindow.close();
+		createWindow();
+	});
 };
 
 app.on("ready", createWindow);
